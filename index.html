@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <meta name="apple-itunes-app" content="app-id=1617391485, app-id=1053012308">
+    <meta name="apple-itunes-app" content="app-id=1617391485">
+    <meta name="apple-itunes-app" content="app-id=1053012308">
     
     <title>Game Downloads</title>
     <style>
@@ -12,20 +13,22 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            padding-top: 100px; 
+            /* Platz für zwei Leisten (80px + 80px + Puffer) */
+            padding-top: 170px; 
         }
 
-        #fake-app-banner {
+        /* Gemeinsame Styles für beide Leisten */
+        .app-banner {
             position: fixed;
-            top: 0;
             left: 0;
             width: 100%;
-            min-height: 90px;
-            background-color: rgba(247, 247, 247, 0.98);
+            height: 80px;
+            background-color: rgba(247, 247, 247, 0.95);
             border-bottom: 1px solid #b0b0b0;
             display: flex;
-            flex-direction: column;
-            padding: 8px 12px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
             box-sizing: border-box;
             z-index: 99999;
             backdrop-filter: blur(10px);
@@ -33,104 +36,126 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .banner-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
+        /* Positionierung der ersten Leiste */
+        #banner-blockblast {
+            top: 0;
+        }
+
+        /* Positionierung der zweiten Leiste (direkt darunter) */
+        #banner-clash {
+            top: 80px;
         }
 
         .close-btn {
-            font-size: 20px;
+            font-size: 24px;
             color: #999;
+            padding: 10px;
+            margin-right: 5px;
             cursor: pointer;
-            padding-right: 10px;
+            line-height: 1;
         }
 
-        .apps-container {
-            display: flex;
-            gap: 15px;
-            flex-grow: 1;
-            overflow-x: auto; /* Scrollbar falls es zu eng wird */
-            padding-bottom: 5px;
-        }
-
-        .app-item {
+        .app-info {
             display: flex;
             align-items: center;
-            min-width: fit-content;
+            flex-grow: 1;
+            overflow: hidden;
         }
 
         .app-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            margin-right: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 12px;
+            background-color: #000;
             background-size: cover;
             border: 1px solid #e5e5e5;
             flex-shrink: 0;
         }
 
         /* Spezifische Icons */
-        .icon-blockblast { background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/44/2c/66/442c664e-4861-1051-93c8-66286705606d/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/230x0w.webp'); }
-        .icon-clash { background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/91/92/7d/91927d2c-8898-051f-50d4-809747535749/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/230x0w.webp'); }
+        .icon-blockblast {
+            background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/44/2c/66/442c664e-4861-1051-93c8-66286705606d/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/230x0w.webp');
+        }
+
+        .icon-clash {
+            background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/91/92/7d/91927d2c-8898-051f-50d4-809747535749/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/230x0w.webp');
+        }
 
         .text-container {
             display: flex;
             flex-direction: column;
-            margin-right: 8px;
+            justify-content: center;
         }
 
         .app-title {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 600;
             color: #000;
             margin: 0;
             white-space: nowrap;
         }
 
+        .app-desc {
+            font-size: 12px;
+            color: #777;
+            margin: 2px 0 0 0;
+            white-space: nowrap;
+        }
+
+        .stars {
+            color: #f09a00;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
         .view-btn {
             color: #007aff;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
+            padding: 6px 12px;
+            margin-left: 5px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         
-        .view-btn:active { opacity: 0.5; }
-
+        .view-btn:active {
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
 
-    <div id="fake-app-banner">
-        <div class="banner-header">
-            <div class="close-btn" onclick="document.getElementById('fake-app-banner').style.display='none';">&times;</div>
-            
-            <div class="apps-container">
-                <div class="app-item">
-                    <div class="app-icon icon-blockblast"></div>
-                    <div class="text-container">
-                        <p class="app-title">Block Blast!</p>
-                        <a href="https://apps.apple.com/us/app/block-blast/id1617391485" class="view-btn">Laden</a>
-                    </div>
-                </div>
-
-                <div class="app-item">
-                    <div class="app-icon icon-clash"></div>
-                    <div class="text-container">
-                        <p class="app-title">Clash Royale</p>
-                        <a href="https://apps.apple.com/us/app/clash-royale/id1053012308" class="view-btn">Laden</a>
-                    </div>
-                </div>
+    <div id="banner-blockblast" class="app-banner">
+        <div class="close-btn" onclick="document.getElementById('banner-blockblast').style.display='none';">&times;</div>
+        <div class="app-info">
+            <div class="app-icon icon-blockblast"></div>
+            <div class="text-container">
+                <p class="app-title">Block Blast!</p>
+                <p class="app-desc">Hungry Studio</p>
+                <p class="stars">★★★★★</p>
             </div>
         </div>
+        <a href="https://apps.apple.com/us/app/block-blast/id1617391485" class="view-btn">Öffnen</a>
+    </div>
+
+    <div id="banner-clash" class="app-banner">
+        <div class="close-btn" onclick="document.getElementById('banner-clash').style.display='none';">&times;</div>
+        <div class="app-info">
+            <div class="app-icon icon-clash"></div>
+            <div class="text-container">
+                <p class="app-title">Clash Royale</p>
+                <p class="app-desc">Supercell</p>
+                <p class="stars">★★★★★</p>
+            </div>
+        </div>
+        <a href="https://apps.apple.com/us/app/clash-royale/id1053012308" class="view-btn">Öffnen</a>
     </div>
 
     <div style="padding: 20px;">
-        <h1>Deine Lieblingsspiele</h1>
-        <p>In der Leiste oben findest du jetzt sowohl Block Blast! als auch Clash Royale.</p>
-        <p>Einfach auf "Laden" klicken, um zum Store zu gelangen.</p>
+        <h1>Spiele-Downloads</h1>
+        <p>Hier hast du beide Banner direkt untereinander, genau im gleichen Stil.</p>
     </div>
 
 </body>
