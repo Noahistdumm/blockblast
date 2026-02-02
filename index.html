@@ -3,101 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>Block Blast</title>
+    <title>Game Downloads</title>
     <style>
         body {
             font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            padding-top: 80px; /* Platz für die Leiste */
-            background-color: #ffffff;
+            background-color: #f2f2f7;
         }
 
-        /* Die stabile Leiste */
-        #custom-app-banner {
+        /* Container für die gesamte Liste oben */
+        #game-list-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 75px;
-            background-color: rgba(250, 250, 250, 0.98);
+            background-color: rgba(255, 255, 255, 0.95);
             border-bottom: 0.5px solid #bcbcbc;
+            z-index: 9999;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: flex;
-            align-items: center;
-            padding: 0 15px;
-            box-sizing: border-box;
-            z-index: 999999;
+            flex-direction: column;
         }
 
-        .close-x {
+        .banner-header {
+            font-size: 12px;
+            font-weight: 700;
             color: #8e8e93;
-            font-size: 22px;
-            margin-right: 15px;
-            cursor: pointer;
-            font-weight: 300;
+            padding: 8px 15px 4px 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Scrollbarer Bereich für die Spiele */
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 15px 15px 15px;
+            gap: 20px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Einzelnes Spiel-Element */
+        .game-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+            text-decoration: none;
+            color: inherit;
         }
 
         .app-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 11px;
-            background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/44/2c/66/442c664e-4861-1051-93c8-66286705606d/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/230x0w.webp');
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
             background-size: cover;
-            box-shadow: 0 0 1px rgba(0,0,0,0.3);
-            margin-right: 12px;
+            background-position: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 6px;
+            border: 0.5px solid rgba(0,0,0,0.1);
         }
 
-        .text-box {
-            flex-grow: 1;
-        }
-
-        .title {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0;
-            color: #000;
-        }
-
-        .subtitle {
+        .game-title {
             font-size: 11px;
-            color: #666;
-            margin: 1px 0;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 75px;
+            color: #333;
         }
 
-        .get-button {
-            background-color: transparent;
-            color: #007aff;
+        .btn-get {
+            margin-top: 5px;
+            background-color: #007aff;
+            color: white;
+            font-size: 10px;
             font-weight: 700;
-            font-size: 14px;
-            text-decoration: none;
-            padding: 5px 0;
+            padding: 3px 10px;
+            border-radius: 12px;
             text-transform: uppercase;
         }
 
-        /* Damit der Link den ganzen Button-Bereich abdeckt */
-        .get-button:active {
-            opacity: 0.4;
-        }
+        /* Versteckt die Scrollbar */
+        .scroll-container::-webkit-scrollbar { display: none; }
+
+        /* Platzhalter für Content unter der Leiste */
+        .content { padding-top: 150px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div id="custom-app-banner">
-        <div class="close-x" onclick="document.getElementById('custom-app-banner').style.display='none';">×</div>
-        <div class="app-icon"></div>
-        <div class="text-box">
-            <p class="title">Block Blast!</p>
-            <p class="subtitle">Hungry Studio</p>
-            <p class="subtitle" style="color: #f09a00;">★★★★★</p>
-        </div>
-        <a href="https://apps.apple.com/us/app/block-blast/id1617391485" class="get-button">Laden</a>
-    </div>
+<div id="game-list-banner">
+    <div class="banner-header">Top Spiele für dich</div>
+    <div class="scroll-container">
+        
+        <a href="https://apps.apple.com/app/id1617391485" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/44/2c/66/442c664e-4861-1051-93c8-66286705606d/AppIcon-0-0-1x_U007emarketing-0-5-0-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Block Blast</div>
+            <div class="btn-get">Laden</div>
+        </a>
 
-    <div style="padding: 20px; text-align: center;">
-        <h2>Willkommen</h2>
-        <p>Klicke oben auf "Laden", um Block Blast zu installieren.</p>
+        <a href="https://apps.apple.com/app/id1229016807" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/91/9d/54/919d54e1-2131-016f-b14e-e19036f56195/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Brawl Stars</div>
+            <div class="btn-get">Laden</div>
+        </a>
+
+        <a href="https://apps.apple.com/app/id1053012308" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/95/92/79/95927909-0c65-2767-4632-601725b81a4b/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Clash Royale</div>
+            <div class="btn-get">Laden</div>
+        </a>
+
+        <a href="https://apps.apple.com/app/id529479190" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7d/5a/0a/7d5a0a99-560b-8d5f-d2f3-10659616d23b/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Clash of Clans</div>
+            <div class="btn-get">Laden</div>
+        </a>
+
+        <a href="https://apps.apple.com/app/id431946152" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/21/53/17/21531776-350b-4786-8968-07f18579d470/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Roblox</div>
+            <div class="btn-get">Laden</div>
+        </a>
+
+        <a href="https://apps.apple.com/app/id6504188939" class="game-item">
+            <div class="app-icon" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e5/22/e1/e522e176-50e5-7977-628d-1945110034a1/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/120x120bb.webp');"></div>
+            <div class="game-title">Subway City</div>
+            <div class="btn-get">Laden</div>
+        </a>
+
     </div>
+</div>
+
+<div class="content">
+    <h2>Deine Spiele-Zentrale</h2>
+    <p>Wische oben nach links, um alle Spiele zu sehen.</p>
+</div>
 
 </body>
 </html>
