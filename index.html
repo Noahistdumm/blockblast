@@ -1,34 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <meta charset="utf-8">
   <title>Game Downloads</title>
+  <style>
+    body { font-family: Arial; }
+    .hidden { display: none; }
+    button { margin-top: 5px; }
+  </style>
 </head>
 <body>
-  <h1>Games installieren</h1>
 
-  <p>
-    <a href="itms-apps://itunes.apple.com/app/id1617391485">
-      Block Blast installieren
-    </a>
-  </p>
+<h1>Games installieren</h1>
 
-  <p>
-    <a href="itms-apps://itunes.apple.com/app/id1053012308">
-      Clash Royale installieren
-    </a>
-  </p>
+<!-- CODE EINGABE -->
+<h3>Code eingeben</h3>
+<input id="userCode" placeholder="Code eingeben">
+<button onclick="checkCode()">Freischalten</button>
 
-  <p>
-    <a href="itms-apps://itunes.apple.com/app/id529479190">
-      Clash of Clans installieren
-    </a>
-  </p>
+<p id="status"></p>
 
-  <p>
-    <a href="itms-apps://itunes.apple.com/app/id1229016807">
-      Brawl Stars installieren
-    </a>
-  </p>
+<!-- DOWNLOADS -->
+<div id="downloads" class="hidden">
+  <p><a id="blockblast" href="itms-apps://itunes.apple.com/app/id1617391485">Block Blast installieren</a></p>
+  <p><a id="royale" href="itms-apps://itunes.apple.com/app/id1053012308">Clash Royale installieren</a></p>
+  <p><a id="coc" href="itms-apps://itunes.apple.com/app/id529479190">Clash of Clans installieren</a></p>
+  <p><a id="brawl" href="itms-apps://itunes.apple.com/app/id1229016807">Brawl Stars installieren</a></p>
+</div>
+
+<hr>
+
+<!-- ADMIN LOGIN -->
+<h3>Admin</h3>
+<input id="adminPw" type="password" placeholder="Admin Passwort">
+<button onclick="adminLogin()">Admin‑Modus</button>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="hidden">
+  <h4>Code erstellen</h4>
+  <input id="newCode" placeholder="Neuer Code">
+  <select id="game">
+    <option value="blockblast">Block Blast</option>
+    <option value="royale">Clash Royale</option>
+    <option value="coc">Clash of Clans</option>
+    <option value="brawl">Brawl Stars</option>
+  </select>
+  <button onclick="createCode()">Code speichern</button>
+</div>
+
+<script>
+  let codes = JSON.parse(localStorage.getItem("codes") || "{}");
+
+  function checkCode() {
+    const code = document.getElementById("userCode").value;
+    const status = document.getElementById("status");
+
+    if (!codes[code]) {
+      status.innerText = "❌ Code ungültig oder schon benutzt";
+      return;
+    }
+
+    document.getElementById("downloads").classList.remove("hidden");
+
+    // alle Links verstecken
+    ["blockblast","royale","coc","brawl"].forEach(id => {
+      document.getElementById(id).style.display = "none";
+    });
+
+    // nur EIN Spiel freigeben
+    document.getElementById(codes[code]).style.display = "block";
+
+    delete codes[code]; // EINMAL BENUTZBAR
+    localStorage.setItem("codes", JSON.stringify(codes));
+
+    status.innerText = "✅ Download freigeschaltet";
+  }
+
+  function adminLogin() {
+    const pw = document.getElementById("adminPw").value;
+    if (pw === "ATGaming1906!") {
+      document.getElementById("adminPanel").classList.remove("hidden");
+      alert("Admin‑Modus aktiviert 😈");
+    } else {
+      alert("Falsches Passwort bro");
+    }
+  }
+
+  function createCode() {
+    const code = document.getElementById("newCode").value;
+    const game = document.getElementById("game").value;
+
+    if (!code) return alert("Code fehlt");
+
+    codes[code] = game;
+    localStorage.setItem("codes", JSON.stringify(codes));
+    alert("Code erstellt: " + code);
+  }
+</script>
+
 </body>
 </html>
