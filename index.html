@@ -12,17 +12,18 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            padding-top: 85px; /* Platz für die Leiste */
+            padding-top: 85px; /* Damit der Inhalt nicht verdeckt wird */
+            background-color: #f2f2f2; /* Leichter grauer Hintergrund wie im App Store */
         }
 
-        /* --- STYLES FÜR DIE LEISTE --- */
+        /* --- STYLES FÜR DIE DOWNLOAD-LEISTE --- */
         #fake-app-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 80px;
-            background-color: rgba(247, 247, 247, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid #b0b0b0;
             display: flex;
             align-items: center;
@@ -30,20 +31,21 @@
             padding: 0 12px;
             box-sizing: border-box;
             z-index: 99999;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
         }
 
+        /* Schließen-Kreuz */
         .close-btn {
-            font-size: 24px;
-            color: #999;
+            font-size: 22px;
+            color: #8e8e93;
             padding: 10px;
-            margin-right: 5px;
+            margin-right: 2px;
             cursor: pointer;
             line-height: 1;
         }
 
+        /* App Infos */
         .app-info {
             display: flex;
             align-items: center;
@@ -51,14 +53,14 @@
             overflow: hidden;
         }
 
-        /* Das AttaPoll Icon */
+        /* AttaPoll Icon */
         .app-icon {
-            width: 55px;
-            height: 55px;
+            width: 52px;
+            height: 52px;
             border-radius: 12px;
             margin-right: 12px;
             background-color: #fff;
-            /* Originales Icon für AttaPoll */
+            /* Das korrekte AttaPoll Icon */
             background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/05/66/69/05666993-9c59-8664-9642-800531502422/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp');
             background-size: cover;
             border: 1px solid #e5e5e5;
@@ -81,31 +83,41 @@
 
         .app-desc {
             font-size: 12px;
-            color: #777;
+            color: #8e8e93;
             margin: 2px 0 0 0;
             white-space: nowrap;
         }
 
         .stars {
-            color: #f09a00;
-            font-size: 10px;
+            color: #ff9500; /* Apple Stern-Orange */
+            font-size: 11px;
             margin-top: 2px;
+            letter-spacing: 1px;
         }
 
-        /* Der blaue Laden Button */
+        /* Der LADEN Button */
         .view-btn {
-            color: #007aff;
-            font-size: 15px;
+            background-color: #007aff; /* Apple Blau als Hintergrund */
+            color: #ffffff;
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
-            padding: 6px 12px;
-            margin-left: 5px;
+            padding: 6px 18px;
+            margin-left: 8px;
+            border-radius: 16px; /* Abgerundeter Button wie im Store */
             text-transform: uppercase;
             white-space: nowrap;
         }
         
         .view-btn:active {
-            opacity: 0.5;
+            opacity: 0.7;
+        }
+
+        /* Dummy Inhalt für die Seite */
+        .content {
+            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
         }
 
     </style>
@@ -120,18 +132,19 @@
             
             <div class="text-container">
                 <p class="app-title">AttaPoll</p>
-                <p class="app-desc">AttaPoll Ltd</p>
+                <p class="app-desc">Bezahlte Umfragen</p>
                 <p class="stars">★★★★★</p>
             </div>
         </div>
 
-        <a href="https://apps.apple.com/de/app/attapoll-geld-verdienen/id1107631390" class="view-btn">Laden</a>
+        <a href="https://apps.apple.com/de/app/attapoll-geld-verdienen/id1107631390" class="view-btn">LADEN</a>
     </div>
 
-    <div style="padding: 20px;">
-        <h1>AttaPoll</h1>
-        <p>Geld verdienen mit Umfragen.</p>
-        <p>Klicke oben auf Laden.</p>
+    <div class="content">
+        <h1>AttaPoll herunterladen</h1>
+        <p>Verdiene Geld mit Umfragen direkt auf deinem Handy.</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <p style="color: #666; font-size: 14px;">Um die App zu installieren, tippe oben rechts auf <strong>LADEN</strong>.</p>
     </div>
 
 </body>
